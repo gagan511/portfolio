@@ -1,86 +1,54 @@
 const hamburger = document.querySelector(".hamburger");
 const navMenu = document.querySelector(".nav-menu");
 
-hamburger.addEventListener("click", mobileMenu);
-
-function mobileMenu() {
+hamburger.addEventListener("click", () => {
   hamburger.classList.toggle("active");
   navMenu.classList.toggle("active");
-}
+});
 
-// Close navbar when link is clicked
-const navLink = document.querySelectorAll(".nav-link");
+// Close navbar when link clicked
+document.querySelectorAll(".nav-link").forEach(link => {
+  link.addEventListener("click", () => {
+    hamburger.classList.remove("active");
+    navMenu.classList.remove("active");
+  });
+});
 
-navLink.forEach((n) => n.addEventListener("click", closeMenu));
+// Dark mode toggle
+const toggleSwitch = document.querySelector('.theme-switch input[type="checkbox"]');
 
-function closeMenu() {
-  hamburger.classList.remove("active");
-  navMenu.classList.remove("active");
-}
-
-// Event Listeners: Handling toggle event
-const toggleSwitch = document.querySelector(
-  '.theme-switch input[type="checkbox"]'
-);
-
-function switchTheme(e) {
+toggleSwitch.addEventListener("change", (e) => {
   if (e.target.checked) {
     document.documentElement.setAttribute("data-theme", "dark");
+    localStorage.setItem("theme", "dark");
   } else {
     document.documentElement.setAttribute("data-theme", "light");
+    localStorage.setItem("theme", "light");
   }
-}
+});
 
-toggleSwitch.addEventListener("change", switchTheme, false);
-
-//  Store color theme for future visits
-
-function switchTheme(e) {
-  if (e.target.checked) {
-    document.documentElement.setAttribute("data-theme", "dark");
-    localStorage.setItem("theme", "dark"); //add this
-  } else {
-    document.documentElement.setAttribute("data-theme", "light");
-    localStorage.setItem("theme", "light"); //add this
-  }
-}
-
-// Save user preference on load
-
-const currentTheme = localStorage.getItem("theme")
-  ? localStorage.getItem("theme")
-  : null;
-
+// Load saved theme
+const currentTheme = localStorage.getItem("theme");
 if (currentTheme) {
   document.documentElement.setAttribute("data-theme", currentTheme);
-
-  if (currentTheme === "dark") {
-    toggleSwitch.checked = true;
-  }
+  if (currentTheme === "dark") toggleSwitch.checked = true;
 }
 
-//Adding date
+// Add current year
+document.querySelector("#datee").textContent = new Date().getFullYear();
 
-let myDate = document.querySelector("#datee");
-
-const yes = new Date().getFullYear();
-myDate.innerHTML = yes;
-
+// Skills bar animation
 const skillsSection = document.querySelector("#skills");
 const progressBars = document.querySelectorAll(".progress");
 
-window.addEventListener("scroll", () => {
+function animateSkills() {
   const sectionPos = skillsSection.getBoundingClientRect().top;
   const screenPos = window.innerHeight / 1.3;
 
   if (sectionPos < screenPos) {
-    progressBars.forEach(bar => {
-    bar.style.width = bar.classList.contains("html") ? "90%" :
-    bar.classList.contains("css") ? "85%" :
-    bar.classList.contains("js") ? "75%" :
-    bar.classList.contains("react") ? "70%" :
-    bar.classList.contains("python") ? "80%" :
-    bar.classList.contains("sql") ? "65%" : "0";
-    });
+    progressBars.forEach(bar => bar.style.width = bar.dataset.percent);
   }
-});
+}
+
+window.addEventListener("scroll", animateSkills);
+window.addEventListener("load", animateSkills);
