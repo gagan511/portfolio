@@ -52,3 +52,43 @@ function animateSkills() {
 
 window.addEventListener("scroll", animateSkills);
 window.addEventListener("load", animateSkills);
+
+// Contact form handling
+const contactForm = document.getElementById("contact-form");
+const statusMsg = document.getElementById("form-status");
+const submitBtn = document.getElementById("submit-btn");
+
+if (contactForm) {
+  contactForm.addEventListener("submit", async function (e) {
+    e.preventDefault();
+
+    submitBtn.style.opacity = "0.6";
+    statusMsg.textContent = "Sending...";
+    statusMsg.style.color = "gray";
+
+    const formData = new FormData(contactForm);
+
+    try {
+      const response = await fetch(contactForm.action, {
+        method: "POST",
+        body: formData,
+        headers: { Accept: "application/json" },
+      });
+
+      if (response.ok) {
+        statusMsg.textContent = "✅ Message sent successfully!";
+        statusMsg.style.color = "green";
+        contactForm.reset();
+      } else {
+        statusMsg.textContent = "❌ Failed to send message. Try again.";
+        statusMsg.style.color = "red";
+      }
+    } catch (error) {
+      statusMsg.textContent = "❌ Something went wrong.";
+      statusMsg.style.color = "red";
+    }
+
+    submitBtn.style.opacity = "1";
+  });
+}
+

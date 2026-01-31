@@ -27,9 +27,8 @@
             <li><a class="nav-link" href="#skills">SKILLS</a></li>
             <li><a class="nav-link" href="#contact">CONTACT</a></li>
             <li>
-              <a class="nav-link btn btn-primary" href="https://github.com/gagan511" target="_blank">
-                RESUME <i class="fas fa-arrow-right"></i>
-              </a>
+              <a
+               href="assets/gagan.pdf" target="_blank" class="btn btn-primary">Resume</a>
             </li>
             <div class="theme-switch">
               <input type="checkbox" id="switch" />
@@ -57,7 +56,7 @@
             A motivated and enthusiastic Full-Stack Developer fresher with a solid understanding of both front-end and back-end web development.
           </p>
         </div>
-        <a href="https://github.com/gagan511" class="btn btn-secondary" target="_blank">Connect With Me</a>
+        <a href="https://www.linkedin.com/in/gagan-poojary-636205384" class="btn btn-secondary" target="_blank"  rel="noopener noreferrer">Connect With Me</a>
       </section>
     </header>
 
@@ -73,11 +72,11 @@
           <div class="project-info">
             <div class="project-bio">
               <h3>Project One</h3>
-              <p>React, Redux, SASS</p>
+              <p>React,tailwindcss</p>
             </div>
             <div class="project-link">
               <a href="https://github.com/gagan511" target="_blank"><i class="fab fa-github"></i></a>
-              <a href="#" target="_blank"><i class="fas fa-globe"></i></a>
+              <a href="https://frumixx.netlify.app/" target="_blank"><i class="fas fa-globe"></i></a>
             </div>
           </div>
         </div>
@@ -180,26 +179,37 @@
       </div>
     </section>
 
-    <section id="contact" class="contact container page-section">
-      <div class="division"></div>
-      <div class="content-text">
-        <h2>Contact Me</h2>
-        <p>Let’s work together</p>
-      </div>
-      <form class="contact-form">
-        <input type="text" placeholder="Your Name" required />
-        <input type="email" placeholder="Your Email" required />
-        <textarea placeholder="Your Message" required></textarea>
-        <button type="submit" class="btn">Send Message</button>
-      </form>
-    </section>
+<section id="contact" class="contact container page-section">
+  <div class="division"></div>
+
+  <div class="content-text">
+    <h2>Contact Me</h2>
+    <p>Let’s work together</p>
+  </div>
+
+  <form
+    id="contact-form"
+    class="contact-form"
+    action="https://formspree.io/f/mjgreojj"
+    method="POST"
+  >
+    <input type="text" name="name" placeholder="Your Name" required />
+    <input type="email" name="email" placeholder="Your Email" required />
+    <textarea name="message" placeholder="Your Message" required></textarea>
+
+    <button type="submit" class="btn" id="submit-btn">
+      Send Message
+    </button>
+  </form>
+  <!-- Status message -->
+  <p id="form-status"></p>
+</section>
 
     <footer id="footer">
       <div class="container">
-        <a href="mailto:mrgaganpoojary@gmail.com">mrgaganpoojary@gmail.com</a>
         <div class="social">
           <a href="https://www.instagram.com/_.gaganpoojary._" target="_blank"><img src="./assets/instagram.svg" alt="instagram" /></a>
-          <a href="https://www.linkedin.com/in/gagan-poojary-700214258/" target="_blank"><img src="./assets/linkedin-icon.svg" alt="linkedin" /></a>
+          <a href="https://www.linkedin.com/in/gagan-poojary-636205384" target="_blank"><img src="./assets/linkedin-icon.svg" alt="linkedin" /></a>
           <a href="https://github.com/gagan511" target="_blank"><img src="./assets/github-icon.svg" alt="GitHub" /></a>
         </div>
         <p>Copyright &copy; Gagan <span id="datee"></span>, All rights reserved</p>
